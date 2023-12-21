@@ -1,20 +1,22 @@
 package com.alexander.vetclinicmanager.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "Client")
 public class Owner {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 //                          ZAIMPLEMENTUJ TOSTRING !! ??
+    @Column(name = "First Name")
     private String firstName;
+    @Column(name = "Last Name")
     private String lastName;
+    @Column(name = "Telephone")
     private String telephone;
+    @Column(name = "Account")
     private double account;
     private Address address;
 
