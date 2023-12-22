@@ -3,8 +3,7 @@ package com.alexander.vetclinicmanager.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Client")
-public class Owner {
+public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,16 +15,18 @@ public class Owner {
     private String lastName;
     @Column(name = "Telephone")
     private String telephone;
-    @Column(name = "Account")
+    @Column(name = "Account", precision = 10, scale = 2)        // max 10 cyfr, 2 po przecinku
     private double account;
+    @OneToOne
     private Address address;
+//    @OneToMany(cascade = CascadeType.REMOVE);           // HibernateNauka 3
+//    private Pet pet;
 
 
-    public Owner(){                 // koniecznie pamietac o bezparametrowym konstruktorze
+    public Client(){                 // koniecznie pamietac o bezparametrowym konstruktorze
     }
 
-
-    public Owner(Long id, String firstName, String lastName, String telephone, double account, Address address) {
+    public Client(Long id, String firstName, String lastName, String telephone, double account, Address address) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

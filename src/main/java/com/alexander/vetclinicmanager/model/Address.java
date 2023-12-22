@@ -1,5 +1,6 @@
 package com.alexander.vetclinicmanager.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -11,20 +12,26 @@ public class Address {
     @GeneratedValue
     private Long id;
 
+    @Column(name = "City")
     private String city;
+    @Column(name = "Street")
     private String street;
-    private int streetNumber;
-    private int flatNumber;
+    @Column(name = "Number")
+    private int houseNumber;
+    @Column(name = "Apartment")
+    private int apartmentNumber;
+    @Column(name = "Zip Code")
     private int zipCode;
 
     public Address(){
     }
 
-    public Address(String city, String street, int streetNumber, int flatNumber, int zipCode) {
+    public Address(Long id, String city, String street, int houseNumber, int apartmentNumber, int zipCode) {
+        this.id = id;
         this.city = city;
         this.street = street;
-        this.streetNumber = streetNumber;
-        this.flatNumber = flatNumber;
+        this.houseNumber = houseNumber;
+        this.apartmentNumber = apartmentNumber;
         this.zipCode = zipCode;
     }
 
@@ -44,20 +51,20 @@ public class Address {
         this.street = street;
     }
 
-    public int getStreetNumber() {
-        return streetNumber;
+    public int getHouseNumber() {
+        return houseNumber;
     }
 
-    public void setStreetNumber(int streetNumber) {
-        this.streetNumber = streetNumber;
+    public void setHouseNumber(int streetNumber) {
+        this.houseNumber = streetNumber;
     }
 
-    public int getFlatNumber() {
-        return flatNumber;
+    public int getApartmentNumber() {
+        return apartmentNumber;
     }
 
-    public void setFlatNumber(int flatNumber) {
-        this.flatNumber = flatNumber;
+    public void setApartmentNumber(int flatNumber) {
+        this.apartmentNumber = flatNumber;
     }
 
     public int getZipCode() {
