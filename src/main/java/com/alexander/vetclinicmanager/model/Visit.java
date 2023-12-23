@@ -20,8 +20,18 @@ public class Visit {
     private Doctor doctor;
 
     @CreationTimestamp
-    private LocalDateTime dateCreated;                  // czy poprawnie ?
+    private LocalDateTime dateCreated;                  // czy poprawnie ? patrz notatki
 
+
+    public Visit() {
+    }
+
+    public Visit(Long id, String description, Doctor doctor, LocalDateTime dateCreated) {
+        this.id = id;
+        this.description = description;
+        this.doctor = doctor;
+        this.dateCreated = dateCreated;
+    }
 
     public void setId(Long id) {
         this.id = id;
