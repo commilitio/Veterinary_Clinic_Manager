@@ -19,9 +19,9 @@ public class Client {
     private String telephone;
     @Column(name = "Account", precision = 10, scale = 2)        // max 10 cyfr, 2 po przecinku
     private double account;
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @OneToOne(cascade = CascadeType.ALL)
     private Address address;
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "petOwner")           // HibernateNauka 3
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "petOwner")           // HibernateNauka 3
     private List <Pet> pet;
 
 

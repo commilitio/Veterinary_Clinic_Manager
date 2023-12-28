@@ -2,6 +2,7 @@ package com.alexander.vetclinicmanager.model;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -21,16 +22,19 @@ public class Visit {
 
     @CreationTimestamp
     private LocalDateTime dateCreated;                  // czy poprawnie ? patrz notatki
+    @UpdateTimestamp
+    private LocalDateTime lastUpdated;
 
 
     public Visit() {
     }
 
-    public Visit(Long id, String description, Doctor doctor, LocalDateTime dateCreated) {
+    public Visit(Long id, String description, Doctor doctor, LocalDateTime dateCreated, LocalDateTime lastUpdated) {
         this.id = id;
         this.description = description;
         this.doctor = doctor;
         this.dateCreated = dateCreated;
+        this.lastUpdated = lastUpdated;
     }
 
     public void setId(Long id) {
@@ -63,6 +67,14 @@ public class Visit {
 
     public void setDateCreated(LocalDateTime dateCreated) {
         this.dateCreated = dateCreated;
+    }
+
+    public LocalDateTime getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(LocalDateTime lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 }
 

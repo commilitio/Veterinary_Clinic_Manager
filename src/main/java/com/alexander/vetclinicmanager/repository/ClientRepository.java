@@ -11,7 +11,7 @@ import java.util.List;
 public interface ClientRepository extends JpaRepository<Client, Long> {
                 // ponizsze metody okreslaja co bedzie robic ta klasa
 
-    List <Client> findClientByLastNameStartsWith(String string);
+    List <Client> findClientByLastNameStartingWith(String string);
 
     // Metoda save jest już dostarczana przez JpaRepository, więc nie musisz jej dodawać.
     // W przypadku korzystania z JpaRepository, zapisywanie i aktualizowanie odbywa się automatycznie.
