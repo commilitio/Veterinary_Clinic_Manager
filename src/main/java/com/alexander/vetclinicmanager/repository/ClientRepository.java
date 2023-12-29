@@ -15,7 +15,6 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     // Metoda save jest już dostarczana przez JpaRepository, więc nie musisz jej dodawać.
     // W przypadku korzystania z JpaRepository, zapisywanie i aktualizowanie odbywa się automatycznie.
-
 }
 
 

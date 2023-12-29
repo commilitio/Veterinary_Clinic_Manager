@@ -23,13 +23,15 @@ public class Client {
     private Address address;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "petOwner")           // HibernateNauka 3
     private List <Pet> pet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
+    private List <Visit> visits;
 
 
     public Client(){                 // koniecznie pamietac o bezparametrowym konstruktorze
     }
 
 
-    public Client(Long id, String firstName, String lastName, String telephone, double account, Address address, List<Pet> pet) {
+    public Client(Long id, String firstName, String lastName, String telephone, double account, Address address, List<Pet> pet, List<Visit> visits) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -37,6 +39,7 @@ public class Client {
         this.account = account;
         this.address = address;
         this.pet = pet;
+        this.visits = visits;
     }
 
     public void setId(Long id) {
@@ -93,6 +96,14 @@ public class Client {
 
     public void setPet(List<Pet> pet) {
         this.pet = pet;
+    }
+
+    public List<Visit> getVisits() {
+        return visits;
+    }
+
+    public void setVisits(List<Visit> visits) {
+        this.visits = visits;
     }
 }
 

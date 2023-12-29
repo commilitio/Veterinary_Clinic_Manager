@@ -19,6 +19,9 @@ public class Visit {
     @ManyToOne
     @JoinColumn(name = "doctor id")         // referencja do doktora
     private Doctor doctor;
+    @ManyToOne
+    @JoinColumn(name = "client id")         // do klienta
+    private Client client;
 
     @CreationTimestamp
     private LocalDateTime dateCreated;                  // czy poprawnie ? patrz notatki
@@ -29,10 +32,11 @@ public class Visit {
     public Visit() {
     }
 
-    public Visit(Long id, String description, Doctor doctor, LocalDateTime dateCreated, LocalDateTime lastUpdated) {
+    public Visit(Long id, String description, Doctor doctor, Client client, LocalDateTime dateCreated, LocalDateTime lastUpdated) {
         this.id = id;
         this.description = description;
         this.doctor = doctor;
+        this.client = client;
         this.dateCreated = dateCreated;
         this.lastUpdated = lastUpdated;
     }
@@ -75,6 +79,14 @@ public class Visit {
 
     public void setLastUpdated(LocalDateTime lastUpdated) {
         this.lastUpdated = lastUpdated;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }
 

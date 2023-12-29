@@ -1,22 +1,25 @@
 package com.alexander.vetclinicmanager.service;
 
 import com.alexander.vetclinicmanager.model.Client;
+import com.alexander.vetclinicmanager.model.Visit;
 import com.alexander.vetclinicmanager.repository.ClientRepository;
+import com.alexander.vetclinicmanager.repository.VisitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 public class ClientService {
 
     @Autowired
     private ClientRepository clientRepository;          // wstrzykuje repo
+    @Autowired
+    private VisitRepository visitRepository;            // ?
 
 
-    public Optional<Client> findById (long id){         // czemu Optional ? co tzn?
-        return clientRepository.findById(id);           // .get ?? wtedy bez Optional
+    public Client findById (Long id){
+        return clientRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Client not found"));
     }
 
 
@@ -43,6 +46,10 @@ public class ClientService {
         clientRepository.delete(client);
     }
 
+    public Visit addVisit(Client client, Visit visit){
+        visit.setClient(client);
+        return visitRepository.save(visit);
+    }
 
 }
 
