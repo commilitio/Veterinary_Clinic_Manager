@@ -20,7 +20,7 @@ public class Address {
     private int houseNumber;
     @Column(name = "Apartment")
     private int apartmentNumber;
-    @Column(name = "Zip Code")
+    @Column(name = "Zip Code", precision = 5)
     private int zipCode;
 
     public Address(){

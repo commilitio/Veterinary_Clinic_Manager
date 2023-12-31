@@ -10,7 +10,6 @@ import java.util.List;
 @Repository
 public interface VisitRepository extends JpaRepository<Visit, Long> {
 
-
     List <Visit> findByDateCreated(LocalDateTime date);             // wyszukuje po dacie wizyty
 }
 

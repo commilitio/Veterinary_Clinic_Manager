@@ -1,20 +1,18 @@
 package com.alexander.vetclinicmanager.service;
 
 import com.alexander.vetclinicmanager.model.Client;
-import com.alexander.vetclinicmanager.model.Visit;
 import com.alexander.vetclinicmanager.repository.ClientRepository;
-import com.alexander.vetclinicmanager.repository.VisitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class ClientService {
 
     @Autowired
     private ClientRepository clientRepository;          // wstrzykuje repo
-    @Autowired
-    private VisitRepository visitRepository;            // ?
 
 
     public Client findById (Long id){
@@ -23,9 +21,15 @@ public class ClientService {
     }
 
 
+    public List <Client> findAllClients(){
+        return clientRepository.findAll();
+    }
+
+
     public Client createClient(Client client){            // dobrze ?
         return clientRepository.save(client);
     }
+
 
     @Transactional
     public void updateClient(Client client){
@@ -46,11 +50,10 @@ public class ClientService {
         clientRepository.delete(client);
     }
 
-    public Visit addVisit(Client client, Visit visit){
-        visit.setClient(client);
-        return visitRepository.save(visit);
-    }
 
+    public List <Client> findClientByLastNameStartingWith (String prefix){      // prefiks, czyli początkowy fragment nazwiska klienta
+        return clientRepository.findClientByLastNameStartingWith(prefix);
+    }
 }
 
 
