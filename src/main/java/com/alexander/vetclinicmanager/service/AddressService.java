@@ -14,8 +14,8 @@ public class AddressService {
     @Autowired
     AddressRepository addressRepository;
 
-    public Address findById(Address address){
-        return addressRepository.findById(address.getId())
+    public Address findById(Long id){
+        return addressRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Address not found"));
     }
 

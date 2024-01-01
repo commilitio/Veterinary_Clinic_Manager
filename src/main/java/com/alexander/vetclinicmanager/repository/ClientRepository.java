@@ -9,7 +9,6 @@ import java.util.List;
 // <klasa naszej encji ktora zarzadza (Client, typ naszego ID z klasy Client (Long)>
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {
-                // ponizsze metody okreslaja co bedzie robic ta klasa
 
     List <Client> findClientByLastNameStartingWith(String prefix);
 
