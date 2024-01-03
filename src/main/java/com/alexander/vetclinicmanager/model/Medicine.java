@@ -1,6 +1,7 @@
 package com.alexander.vetclinicmanager.model;
 
 import jakarta.persistence.*;
+import org.springframework.lang.NonNull;
 
 @Entity
 public class Medicine {
@@ -8,11 +9,11 @@ public class Medicine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Name")
+    @NonNull
     private String name;
-    @Column(name = "Price", precision = 10, scale = 2)
+    @Column(precision = 10, scale = 2)
     private double price;
-    @Column(name = "Stock", precision = 10, scale = 1)
+    @Column(precision = 10, scale = 1)
     private double stock;
 
 
@@ -58,6 +59,17 @@ public class Medicine {
 
     public void setStock(double stock) {
         this.stock = stock;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Medicine{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", stock=" + stock +
+                '}';
     }
 }
 

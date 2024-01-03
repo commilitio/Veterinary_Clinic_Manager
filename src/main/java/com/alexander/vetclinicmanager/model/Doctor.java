@@ -1,6 +1,7 @@
 package com.alexander.vetclinicmanager.model;
 
 import jakarta.persistence.*;
+import org.springframework.lang.NonNull;
 
 import java.util.List;
 
@@ -10,9 +11,9 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "First Name")
+    @NonNull
     private String firstName;
-    @Column(name = "Last Name")
+    @NonNull
     private String lastName;
     @OneToMany(mappedBy = "doctor")     // trzeba wskazac nazwe pola po przeciwnej stronie, dwukierunkowa relacja jeden do wielu
     private List<Visit> visits;         // lista wizyt doktora
@@ -58,6 +59,16 @@ public class Doctor {
 
     public void setVisits(List<Visit> visits) {
         this.visits = visits;
+    }
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", visits=" + visits +
+                '}';
     }
 }
 

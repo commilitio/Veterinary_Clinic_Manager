@@ -3,6 +3,7 @@ package com.alexander.vetclinicmanager.model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.lang.NonNull;
 
 import java.time.LocalDateTime;
 
@@ -13,16 +14,17 @@ public class Visit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Visit Description")
+    @NonNull
+    @Column(name = "visit_description")
     private String description;
 
-    @Column(name = "Last Update By")
+    @Column(name = "last_update_by")
     @ManyToOne
-    @JoinColumn(name = "doctor id")         // referencja do doktora
+    @JoinColumn(name = "doctor_id")         // referencja do doktora
     private Doctor doctor;
 
     @ManyToOne
-    @JoinColumn(name = "client id")         // do klienta
+    @JoinColumn(name = "client_id")         // do klienta
     private Client client;
 
     @CreationTimestamp
@@ -89,6 +91,18 @@ public class Visit {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    @Override
+    public String toString() {
+        return "Visit{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", doctor=" + doctor +
+                ", client=" + client +
+                ", dateCreated=" + dateCreated +
+                ", lastUpdated=" + lastUpdated +
+                '}';
     }
 }
 

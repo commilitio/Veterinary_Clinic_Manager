@@ -1,6 +1,7 @@
 package com.alexander.vetclinicmanager.model;
 
 import jakarta.persistence.*;
+import org.springframework.lang.NonNull;
 
 @Entity
 public class Pet {
@@ -8,17 +9,12 @@ public class Pet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Pet name")
+    @NonNull
     private String name;
-    @Column(name = "Age")
     private int age;            // int? data obecna - data urodzenia
-    @Column(name = "Type")
     private String type;        // enum? api ?
-    @Column(name = "Breed")
     private String breed;
-    @Column(name = "Color")
     private String color;
-    @Column(name = "Gender")
     private String gender;
 
     @ManyToOne
@@ -101,6 +97,21 @@ public class Pet {
 
     public void setPetOwner(Client petOwner) {
         this.petOwner = petOwner;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Pet{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", type='" + type + '\'' +
+                ", breed='" + breed + '\'' +
+                ", color='" + color + '\'' +
+                ", gender='" + gender + '\'' +
+                ", petOwner=" + petOwner +
+                '}';
     }
 }
 

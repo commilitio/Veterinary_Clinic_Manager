@@ -1,6 +1,7 @@
 package com.alexander.vetclinicmanager.model;
 
 import jakarta.persistence.*;
+import org.springframework.lang.NonNull;
 
 @Entity
 public class Address {
@@ -9,15 +10,14 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "City")
+    @NonNull
     private String city;
-    @Column(name = "Street")
+    @NonNull
     private String street;
-    @Column(name = "Number")
+    @NonNull
     private int houseNumber;
-    @Column(name = "Apartment")
     private int apartmentNumber;
-    @Column(name = "Zip Code", precision = 5)
+    @Column(precision = 5)
     private int zipCode;
 
     public Address(){

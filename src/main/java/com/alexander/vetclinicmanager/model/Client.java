@@ -11,14 +11,13 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)     // Wartości klucza są generowane przez bazę danych.
     private Long id;
-//                          ZAIMPLEMENTUJ TOSTRING !! ??
-    @Column(name = "First Name")
+
+    @NonNull
     private String firstName;
-    @Column(name = "Last Name")
+    @NonNull
     private String lastName;
-    @Column(name = "Telephone")
     private String telephone;
-    @Column(name = "Account", precision = 10, scale = 2)        // max 10 cyfr, 2 po przecinku
+    @Column(precision = 10, scale = 2)        // max 10 cyfr, 2 po przecinku
     private double account;
     @OneToOne(cascade = CascadeType.REMOVE)
     private Address address;
@@ -105,6 +104,20 @@ public class Client {
 
     public void setVisits(List<Visit> visits) {
         this.visits = visits;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", account=" + account +
+                ", address=" + address +
+                ", pet=" + pet +
+                ", visits=" + visits +
+                '}';
     }
 }
 
