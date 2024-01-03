@@ -45,8 +45,8 @@ public class ClientService {
         clientRepository.save(existingClient);          // zapis do bazy danych
     }
 
-    public void deleteClient(Long clientId) {
-        Client clientToDelete = clientRepository.findById(clientId)
+    public void deleteClient(Long id) {
+        Client clientToDelete = clientRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Client not found"));
         clientRepository.delete(clientToDelete);
     }

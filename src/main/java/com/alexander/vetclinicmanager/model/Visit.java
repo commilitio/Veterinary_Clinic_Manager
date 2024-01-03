@@ -10,8 +10,9 @@ import java.time.LocalDateTime;
 public class Visit {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "Visit Description")
     private String description;
 
@@ -19,6 +20,7 @@ public class Visit {
     @ManyToOne
     @JoinColumn(name = "doctor id")         // referencja do doktora
     private Doctor doctor;
+
     @ManyToOne
     @JoinColumn(name = "client id")         // do klienta
     private Client client;

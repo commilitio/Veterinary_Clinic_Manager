@@ -16,7 +16,7 @@ public class VisitService {
     private VisitRepository visitRepository;
 
 
-    private Visit findById(Long id){
+    public Visit findById(Long id){
         return visitRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("Visit not found"));
     }
@@ -27,8 +27,8 @@ public class VisitService {
     }
 
     @Transactional
-    public Visit updateVisit(Visit visit){
-        Visit existingVisit = visitRepository.findById(visit.getId())
+    public Visit updateVisit(Long id, Visit visit){
+        Visit existingVisit = visitRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Visit not found"));
 
         existingVisit.setDescription(visit.getDescription());

@@ -25,8 +25,8 @@ public class AddressService {
     }
 
     @Transactional
-    public Address updateAddress(Address address){
-        Address existingAddress = addressRepository.findById(address.getId())
+    public Address updateAddress(Long id, Address address){
+        Address existingAddress = addressRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Address not found"));
 
         existingAddress.setCity(address.getCity());

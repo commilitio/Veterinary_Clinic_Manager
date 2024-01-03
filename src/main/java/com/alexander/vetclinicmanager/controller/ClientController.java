@@ -93,8 +93,21 @@ public class ClientController {
     }
 
 
-    public void updateClient(Client client){
+    @PutMapping("/update/{id}")
+    public void updateClient(@PathVariable Long id, @RequestBody Client client){
+        clientService.updateClient(id, client);
+    }
 
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteClient(@PathVariable Long id){
+        clientService.deleteClient(id);
+    }
+
+
+    @GetMapping("/search")                            // RequestParam ?
+    public List <Client> findClientByLastNameStartingWith (@RequestParam String prefix){
+        return clientService.findClientByLastNameStartingWith(prefix);
     }
 }
 

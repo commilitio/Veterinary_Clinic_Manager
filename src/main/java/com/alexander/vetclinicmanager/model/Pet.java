@@ -5,8 +5,9 @@ import jakarta.persistence.*;
 @Entity
 public class Pet {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "Pet name")
     private String name;
     @Column(name = "Age")
@@ -19,6 +20,7 @@ public class Pet {
     private String color;
     @Column(name = "Gender")
     private String gender;
+
     @ManyToOne
     @JoinColumn(name = "Owner id")
     private Client petOwner;

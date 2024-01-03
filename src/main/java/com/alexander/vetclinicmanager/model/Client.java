@@ -1,6 +1,7 @@
 package com.alexander.vetclinicmanager.model;
 
 import jakarta.persistence.*;
+import org.springframework.lang.NonNull;
 
 import java.util.List;
 
@@ -8,7 +9,7 @@ import java.util.List;
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)     // Wartości klucza są generowane przez bazę danych.
     private Long id;
 //                          ZAIMPLEMENTUJ TOSTRING !! ??
     @Column(name = "First Name")
@@ -19,11 +20,11 @@ public class Client {
     private String telephone;
     @Column(name = "Account", precision = 10, scale = 2)        // max 10 cyfr, 2 po przecinku
     private double account;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.REMOVE)
     private Address address;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "petOwner")           // HibernateNauka 3
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "petOwner")           // HibernateNauka 3
     private List <Pet> pet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "client")
     private List <Visit> visits;
 
 

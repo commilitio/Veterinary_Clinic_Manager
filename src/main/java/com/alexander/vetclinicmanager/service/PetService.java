@@ -22,8 +22,8 @@ public class PetService {
         return petRepository.save(pet);
     }
 
-    public void updatePet(Pet pet) {
-        Pet existingPet = petRepository.findById(pet.getId())
+    public void updatePet(Long id, Pet pet) {
+        Pet existingPet = petRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Pet not found"));
 
         existingPet.setName(pet.getName());
