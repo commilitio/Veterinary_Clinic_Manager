@@ -1,9 +1,9 @@
 package com.alexander.vetclinicmanager.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.lang.NonNull;
 
 import java.time.LocalDateTime;
 
@@ -14,13 +14,12 @@ public class Visit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
+    @NotNull
     @Column(name = "visit_description")
     private String description;
 
-    @Column(name = "last_update_by")
     @ManyToOne
-    @JoinColumn(name = "doctor_id")         // referencja do doktora
+    @JoinColumn(name = "last_update_by")         // referencja do doktora
     private Doctor doctor;
 
     @ManyToOne

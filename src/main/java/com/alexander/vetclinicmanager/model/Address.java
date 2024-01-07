@@ -1,7 +1,8 @@
 package com.alexander.vetclinicmanager.model;
 
 import jakarta.persistence.*;
-import org.springframework.lang.NonNull;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Address {
@@ -10,26 +11,31 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
+    @NotBlank
     private String city;
-    @NonNull
+    @NotBlank
     private String street;
-    @NonNull
+    @NotNull
     private int houseNumber;
     private int apartmentNumber;
     @Column(precision = 5)
     private int zipCode;
+    @OneToOne(mappedBy = "address")
+    private Client client;                  // bedzie mozna znalezc klienta po ip adresu
 
     public Address(){
     }
 
-    public Address(Long id, String city, String street, int houseNumber, int apartmentNumber, int zipCode) {
+    public Address(Long id, String city, String street, int houseNumber, int apartmentNumber, int zipCode, Client client) {
         this.id = id;
         this.city = city;
         this.street = street;
         this.houseNumber = houseNumber;
         this.apartmentNumber = apartmentNumber;
         this.zipCode = zipCode;
+        this.client = client;
+//        if (client != null)
+//            client.setAddress(this);
     }
 
     public String getCity() {
@@ -78,6 +84,27 @@ public class Address {
 
     public Long getId() {
         return id;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", houseNumber=" + houseNumber +
+                ", apartmentNumber=" + apartmentNumber +
+                ", zipCode=" + zipCode +
+                ", client=" + client +
+                '}';
     }
 }
 

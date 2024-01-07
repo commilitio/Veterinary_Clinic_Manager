@@ -1,8 +1,8 @@
 package com.alexander.vetclinicmanager.model;
 
 import jakarta.persistence.*;
-import org.springframework.lang.NonNull;
-
+import jakarta.validation.constraints.NotBlank;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -12,16 +12,16 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)     // Wartości klucza są generowane przez bazę danych.
     private Long id;
 
-    @NonNull
+    @NotBlank                   // zawiera juz w sobie NotNull
     private String firstName;
-    @NonNull
+    @NotBlank
     private String lastName;
     private String telephone;
     @Column(precision = 10, scale = 2)        // max 10 cyfr, 2 po przecinku
-    private double account;
-    @OneToOne(cascade = CascadeType.REMOVE)
+    private BigDecimal account;
+    @OneToOne(cascade = CascadeType.ALL)
     private Address address;
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "petOwner")           // HibernateNauka 3
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "petOwner")           // HibernateNauka 3; wlascicielem relacji jest kolumna w Pet
     private List <Pet> pet;
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "client")
     private List <Visit> visits;
@@ -31,7 +31,7 @@ public class Client {
     }
 
 
-    public Client(Long id, String firstName, String lastName, String telephone, double account, Address address, List<Pet> pet, List<Visit> visits) {
+    public Client(Long id, String firstName, String lastName, String telephone, BigDecimal account, Address address, List<Pet> pet, List<Visit> visits) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -74,11 +74,11 @@ public class Client {
         this.telephone = telephone;
     }
 
-    public double getAccount() {
+    public BigDecimal getAccount() {
         return account;
     }
 
-    public void setAccount(double account) {
+    public void setAccount(BigDecimal account) {
         this.account = account;
     }
 

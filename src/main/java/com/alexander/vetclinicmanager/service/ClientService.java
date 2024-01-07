@@ -13,6 +13,8 @@ public class ClientService {
 
     @Autowired
     private ClientRepository clientRepository;          // wstrzykuje repo
+    @Autowired
+    private AddressService addressService;
 
 
     public Client findById (Long id){
@@ -26,7 +28,11 @@ public class ClientService {
     }
 
 
-    public Client createClient(Client client){            // dobrze ?
+//    @Transactional
+    public Client createClient(Client client){
+//        Address savedAddress = addressService.createAddress(client.getAddress());
+//        savedAddress.setClient(client);         // ustawia klienta w adresie
+//        client.setAddress(savedAddress);
         return clientRepository.save(client);
     }
 

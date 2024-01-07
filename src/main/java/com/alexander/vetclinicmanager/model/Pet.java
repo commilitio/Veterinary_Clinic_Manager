@@ -1,7 +1,8 @@
 package com.alexander.vetclinicmanager.model;
 
 import jakarta.persistence.*;
-import org.springframework.lang.NonNull;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Pet {
@@ -9,7 +10,7 @@ public class Pet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
+    @NotBlank
     private String name;
     private int age;            // int? data obecna - data urodzenia
     private String type;        // enum? api ?
@@ -18,7 +19,7 @@ public class Pet {
     private String gender;
 
     @ManyToOne
-    @JoinColumn(name = "Owner id")
+    @JoinColumn(name = "owner id")      // ta kolumna jest wlascicielem relacji, jest kluczem obcym
     private Client petOwner;
 
     public Pet() {

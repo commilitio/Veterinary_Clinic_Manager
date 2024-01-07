@@ -1,7 +1,10 @@
 package com.alexander.vetclinicmanager.model;
 
 import jakarta.persistence.*;
-import org.springframework.lang.NonNull;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+import java.math.BigDecimal;
 
 @Entity
 public class Medicine {
@@ -9,19 +12,19 @@ public class Medicine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
+    @NotBlank
     private String name;
     @Column(precision = 10, scale = 2)
-    private double price;
+    private BigDecimal price;
     @Column(precision = 10, scale = 1)
-    private double stock;
+    private BigDecimal stock;
 
 
     public Medicine() {
     }
 
 
-    public Medicine(Long id, String name, double price, double stock) {
+    public Medicine(Long id, String name, BigDecimal price, BigDecimal stock) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -45,19 +48,19 @@ public class Medicine {
         this.name = name;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
-    public double getStock() {
+    public BigDecimal getStock() {
         return stock;
     }
 
-    public void setStock(double stock) {
+    public void setStock(BigDecimal stock) {
         this.stock = stock;
     }
 
