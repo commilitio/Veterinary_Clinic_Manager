@@ -1,8 +1,11 @@
 package com.alexander.vetclinicmanager.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.Fetch;
+import org.springframework.context.annotation.Lazy;
 
 @Entity
 public class Address {
@@ -20,7 +23,9 @@ public class Address {
     private int apartmentNumber;
     @Column(precision = 5)
     private int zipCode;
-    @OneToOne(mappedBy = "address")
+    @OneToOne
+    @JoinColumn(name = "client_id")
+    @JsonIgnore
     private Client client;                  // bedzie mozna znalezc klienta po ip adresu
 
     public Address(){

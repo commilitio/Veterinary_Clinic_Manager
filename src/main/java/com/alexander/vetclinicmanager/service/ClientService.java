@@ -1,8 +1,11 @@
 package com.alexander.vetclinicmanager.service;
 
+import com.alexander.vetclinicmanager.model.Address;
 import com.alexander.vetclinicmanager.model.Client;
 import com.alexander.vetclinicmanager.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,8 +16,9 @@ public class ClientService {
 
     @Autowired
     private ClientRepository clientRepository;          // wstrzykuje repo
-    @Autowired
-    private AddressService addressService;
+ //   @Lazy
+ //   @Autowired
+ //   private AddressService addressService;
 
 
     public Client findById (Long id){
@@ -28,11 +32,11 @@ public class ClientService {
     }
 
 
-//    @Transactional
+    @Transactional
     public Client createClient(Client client){
-//        Address savedAddress = addressService.createAddress(client.getAddress());
-//        savedAddress.setClient(client);         // ustawia klienta w adresie
-//        client.setAddress(savedAddress);
+        Address address = client.getAddress();
+        if (address != null)
+            address.setClient(client);
         return clientRepository.save(client);
     }
 

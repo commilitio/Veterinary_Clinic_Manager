@@ -30,7 +30,7 @@ public class AddressController {
     }
 
 
-    @PutMapping("/update/{id}")
+    @PatchMapping("/update/{id}")
     public Address updateAddress(@PathVariable Long id, @RequestBody Address address){
         return addressService.updateAddress(id, address);
     }

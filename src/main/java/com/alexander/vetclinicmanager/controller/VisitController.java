@@ -30,7 +30,7 @@ public class VisitController {
     }
 
 
-    @PutMapping("/update/{id}")
+    @PatchMapping("/update/{id}")
     public Visit updateVisit(@PathVariable Long id, @RequestBody Visit visit){
         return visitService.updateVisit(id, visit);
     }

@@ -18,14 +18,14 @@ public class Pet {
     private String color;
     private String gender;
 
-    @ManyToOne
-    @JoinColumn(name = "owner id")      // ta kolumna jest wlascicielem relacji, jest kluczem obcym
-    private Client petOwner;
+//    @ManyToOne
+//    @JoinColumn(name = "owner id")      // ta kolumna jest wlascicielem relacji, jest kluczem obcym
+//    private Client petOwner;
 
     public Pet() {
     }
 
-    public Pet(Long id, String name, int age, String type, String breed, String color, String gender, Client petOwner) {
+    public Pet(Long id, String name, int age, String type, String breed, String color, String gender){ //}, Client petOwner) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -33,7 +33,7 @@ public class Pet {
         this.breed = breed;
         this.color = color;
         this.gender = gender;
-        this.petOwner = petOwner;
+//        this.petOwner = petOwner;
     }
 
     public void setId(Long id) {
@@ -91,14 +91,14 @@ public class Pet {
     public void setGender(String gender) {
         this.gender = gender;
     }
-
-    public Client getPetOwner() {
-        return petOwner;
-    }
-
-    public void setPetOwner(Client petOwner) {
-        this.petOwner = petOwner;
-    }
+//
+//    public Client getPetOwner() {
+//        return petOwner;
+//    }
+//
+//    public void setPetOwner(Client petOwner) {
+//        this.petOwner = petOwner;
+//    }
 
 
     @Override
@@ -111,7 +111,7 @@ public class Pet {
                 ", breed='" + breed + '\'' +
                 ", color='" + color + '\'' +
                 ", gender='" + gender + '\'' +
-                ", petOwner=" + petOwner +
+//                ", petOwner=" + petOwner +
                 '}';
     }
 }

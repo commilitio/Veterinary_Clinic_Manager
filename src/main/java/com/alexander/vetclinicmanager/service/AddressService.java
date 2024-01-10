@@ -1,8 +1,10 @@
 package com.alexander.vetclinicmanager.service;
 
 import com.alexander.vetclinicmanager.model.Address;
+import com.alexander.vetclinicmanager.model.Client;
 import com.alexander.vetclinicmanager.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,17 +14,27 @@ import java.util.List;
 public class AddressService {
 
     @Autowired
-    AddressRepository addressRepository;
+    private AddressRepository addressRepository;
+//    @Lazy
+    @Autowired
+    private ClientService clientService;
+
 
     public Address findById(Long id){
         return addressRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Address not found"));
     }
 
-
+    @Transactional
     public Address createAddress(Address address){
+        Client client = address.getClient();
+        if (client != null) {
+            client.setAddress(address);
+            clientService.createClient(client);
+        }
         return addressRepository.save(address);
     }
+
 
     @Transactional
     public Address updateAddress(Long id, Address address){

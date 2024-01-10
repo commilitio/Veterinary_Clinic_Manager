@@ -18,13 +18,13 @@ public class Visit {
     @Column(name = "visit_description")
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "last_update_by")         // referencja do doktora
-    private Doctor doctor;
-
-    @ManyToOne
-    @JoinColumn(name = "client_id")         // do klienta
-    private Client client;
+//    @ManyToOne
+//    @JoinColumn(name = "last_update_by")         // referencja do doktora
+//    private Doctor doctor;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "client_id")         // do klienta
+//    private Client client;
 
     @CreationTimestamp
     private LocalDateTime dateCreated;                  // czy poprawnie ? patrz notatki
@@ -35,11 +35,11 @@ public class Visit {
     public Visit() {
     }
 
-    public Visit(Long id, String description, Doctor doctor, Client client, LocalDateTime dateCreated, LocalDateTime lastUpdated) {
+    public Visit(Long id, String description, LocalDateTime dateCreated, LocalDateTime lastUpdated) {   // Doctor doctor, Client client,
         this.id = id;
         this.description = description;
-        this.doctor = doctor;
-        this.client = client;
+//        this.doctor = doctor;
+//        this.client = client;
         this.dateCreated = dateCreated;
         this.lastUpdated = lastUpdated;
     }
@@ -60,13 +60,13 @@ public class Visit {
         this.description = description;
     }
 
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-    }
+//    public Doctor getDoctor() {
+//        return doctor;
+//    }
+//
+//    public void setDoctor(Doctor doctor) {
+//        this.doctor = doctor;
+//    }
 
     public LocalDateTime getDateCreated() {
         return dateCreated;
@@ -84,21 +84,21 @@ public class Visit {
         this.lastUpdated = lastUpdated;
     }
 
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
+//    public Client getClient() {
+//        return client;
+//    }
+//
+//    public void setClient(Client client) {
+//        this.client = client;
+//    }
 
     @Override
     public String toString() {
         return "Visit{" +
                 "id=" + id +
                 ", description='" + description + '\'' +
-                ", doctor=" + doctor +
-                ", client=" + client +
+//                ", doctor=" + doctor +
+//                ", client=" + client +
                 ", dateCreated=" + dateCreated +
                 ", lastUpdated=" + lastUpdated +
                 '}';

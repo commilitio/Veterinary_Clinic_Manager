@@ -17,18 +17,18 @@ public class Doctor {
     private String firstName;
     @NotBlank
     private String lastName;
-    @OneToMany(mappedBy = "doctor")     // trzeba wskazac nazwe pola po przeciwnej stronie, dwukierunkowa relacja jeden do wielu
-    private List<Visit> visits;         // lista wizyt doktora
+//    @OneToMany(mappedBy = "doctor")     // trzeba wskazac nazwe pola po przeciwnej stronie, dwukierunkowa relacja jeden do wielu
+//    private List<Visit> visits;         // lista wizyt doktora
 
 
     public Doctor() {
     }
 
-    public Doctor(Long id, String firstName, String lastName, List<Visit> visits) {
+    public Doctor(Long id, String firstName, String lastName){ // }, List<Visit> visits) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.visits = visits;
+ //       this.visits = visits;
     }
 
     public void setId(Long id) {
@@ -55,13 +55,13 @@ public class Doctor {
         this.lastName = lastName;
     }
 
-    public List<Visit> getVisits() {
-        return visits;
-    }
-
-    public void setVisits(List<Visit> visits) {
-        this.visits = visits;
-    }
+//    public List<Visit> getVisits() {
+//        return visits;
+//    }
+//
+//    public void setVisits(List<Visit> visits) {
+//        this.visits = visits;
+//    }
 
     @Override
     public String toString() {
@@ -69,7 +69,7 @@ public class Doctor {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", visits=" + visits +
+ //               ", visits=" + visits +
                 '}';
     }
 }

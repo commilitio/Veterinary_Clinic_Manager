@@ -1,7 +1,10 @@
 package com.alexander.vetclinicmanager.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import org.springframework.context.annotation.Lazy;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -19,27 +22,28 @@ public class Client {
     private String telephone;
     @Column(precision = 10, scale = 2)        // max 10 cyfr, 2 po przecinku
     private BigDecimal account;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "client")
+//    @JsonIgnore     // pole nie bedzie uwzględniane podczas przekształcania do formatu JSON, dane te nie są istotne dla klienta aplikacji klienckiej
     private Address address;
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "petOwner")           // HibernateNauka 3; wlascicielem relacji jest kolumna w Pet
-    private List <Pet> pet;
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "client")
-    private List <Visit> visits;
+//    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "petOwner")           // HibernateNauka 3; wlascicielem relacji jest kolumna w Pet
+//    private List <Pet> pet;
+//    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "client")
+//    private List <Visit> visits;
 
 
     public Client(){                 // koniecznie pamietac o bezparametrowym konstruktorze
     }
 
 
-    public Client(Long id, String firstName, String lastName, String telephone, BigDecimal account, Address address, List<Pet> pet, List<Visit> visits) {
+    public Client(Long id, String firstName, String lastName, String telephone, BigDecimal account, Address address){ // List<Pet> pet, List<Visit> visits) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.telephone = telephone;
         this.account = account;
         this.address = address;
-        this.pet = pet;
-        this.visits = visits;
+//        this.pet = pet;
+//        this.visits = visits;
     }
 
     public void setId(Long id) {
@@ -89,22 +93,22 @@ public class Client {
     public void setAddress(Address address) {
         this.address = address;
     }
-
-    public List<Pet> getPet() {
-        return pet;
-    }
-
-    public void setPet(List<Pet> pet) {
-        this.pet = pet;
-    }
-
-    public List<Visit> getVisits() {
-        return visits;
-    }
-
-    public void setVisits(List<Visit> visits) {
-        this.visits = visits;
-    }
+//
+//    public List<Pet> getPet() {
+//        return pet;
+//    }
+//
+//    public void setPet(List<Pet> pet) {
+//        this.pet = pet;
+//    }
+//
+//    public List<Visit> getVisits() {
+//        return visits;
+//    }
+//
+//    public void setVisits(List<Visit> visits) {
+//        this.visits = visits;
+//    }
 
     @Override
     public String toString() {
@@ -115,8 +119,8 @@ public class Client {
                 ", telephone='" + telephone + '\'' +
                 ", account=" + account +
                 ", address=" + address +
-                ", pet=" + pet +
-                ", visits=" + visits +
+//                ", pet=" + pet +
+//                ", visits=" + visits +
                 '}';
     }
 }
