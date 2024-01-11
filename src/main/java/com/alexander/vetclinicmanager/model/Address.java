@@ -25,22 +25,20 @@ public class Address {
     private int zipCode;
     @OneToOne
     @JoinColumn(name = "client_id")
-    @JsonIgnore
+    @JsonIgnore                             // bez tego StackOverflowwError; pole nie bedzie uwzględniane podczas przekształcania do formatu JSON, dane te nie są istotne dla klienta aplikacji klienckiej
     private Client client;                  // bedzie mozna znalezc klienta po ip adresu
 
     public Address(){
     }
 
-    public Address(Long id, String city, String street, int houseNumber, int apartmentNumber, int zipCode, Client client) {
+    public Address(Long id, String city, String street, int houseNumber, int apartmentNumber, int zipCode){     // bez tego:  Client client) {
         this.id = id;
         this.city = city;
         this.street = street;
         this.houseNumber = houseNumber;
         this.apartmentNumber = apartmentNumber;
         this.zipCode = zipCode;
-        this.client = client;
-//        if (client != null)
-//            client.setAddress(this);
+//        this.client = client;
     }
 
     public String getCity() {

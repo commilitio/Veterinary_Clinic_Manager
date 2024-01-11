@@ -23,7 +23,6 @@ public class Client {
     @Column(precision = 10, scale = 2)        // max 10 cyfr, 2 po przecinku
     private BigDecimal account;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "client")
-//    @JsonIgnore     // pole nie bedzie uwzględniane podczas przekształcania do formatu JSON, dane te nie są istotne dla klienta aplikacji klienckiej
     private Address address;
 //    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "petOwner")           // HibernateNauka 3; wlascicielem relacji jest kolumna w Pet
 //    private List <Pet> pet;

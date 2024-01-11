@@ -4,7 +4,6 @@ import com.alexander.vetclinicmanager.model.Address;
 import com.alexander.vetclinicmanager.model.Client;
 import com.alexander.vetclinicmanager.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +14,6 @@ public class AddressService {
 
     @Autowired
     private AddressRepository addressRepository;
-//    @Lazy
     @Autowired
     private ClientService clientService;
 
