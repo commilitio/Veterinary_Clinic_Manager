@@ -2,7 +2,7 @@ package com.alexander.vetclinicmanager.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -46,7 +46,7 @@ public class Pet {
         LocalDate now = LocalDate.now();
         if (birthdate != null){
             Period petAge = Period.between(birthdate, now);
-            this.age = petAge.getYears() + " years" + petAge.getMonths() + " months";
+            this.age = petAge.getYears() + " years " + petAge.getMonths() + " months";
         }
     }
 
@@ -74,6 +74,7 @@ public class Pet {
         return birthdate;
     }
 
+//  @DateTimeFormat(pattern = "dd-MM-yyyy")             nie dziala
     public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
     }

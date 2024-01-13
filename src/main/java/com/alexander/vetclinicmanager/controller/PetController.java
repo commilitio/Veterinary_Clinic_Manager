@@ -34,7 +34,7 @@ public class PetController {
     }
 
 
-    @PutMapping("/update/{id}")
+    @PatchMapping("/update/{id}")
     public Pet updatePet(@PathVariable Long id, @RequestBody Pet pet){
         return petService.updatePet(id, pet);
     }
