@@ -37,7 +37,7 @@ public class ClientService {
 
 
     @Transactional
-    public void updateClient(Long id, Client client){
+    public Client updateClient(Long id, Client client){
         Client existingClient = clientRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Client not found"));
 
@@ -47,7 +47,7 @@ public class ClientService {
         existingClient.setAccount(client.getAccount());
         existingClient.setAddress(client.getAddress());
 
-        clientRepository.save(existingClient);          // zapis do bazy danych
+        return clientRepository.save(existingClient);          // zapis do bazy danych
     }
 
     public void deleteClient(Long id) {

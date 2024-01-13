@@ -94,8 +94,8 @@ public class ClientController {
 
 
     @PatchMapping("/update/{id}")           // = partial update (PUT = entirely update)
-    public void updateClient(@PathVariable Long id, @RequestBody Client client){
-        clientService.updateClient(id, client);
+    public Client updateClient(@PathVariable Long id, @RequestBody Client client){
+        return clientService.updateClient(id, client);
     }
 
 

@@ -23,6 +23,11 @@ public class PetController {
     }
 
 
+    @GetMapping("/pets")
+    public List<Pet> findAllPets(){
+        return petService.findAllPets();
+    }
+
     @PostMapping("/newPet")
     public Pet createPet(@RequestBody Pet pet){
         return petService.createPet(pet);
@@ -30,8 +35,8 @@ public class PetController {
 
 
     @PutMapping("/update/{id}")
-    public void updatePet(@PathVariable Long id, @RequestBody Pet pet){
-        petService.updatePet(id, pet);
+    public Pet updatePet(@PathVariable Long id, @RequestBody Pet pet){
+        return petService.updatePet(id, pet);
     }
 
 

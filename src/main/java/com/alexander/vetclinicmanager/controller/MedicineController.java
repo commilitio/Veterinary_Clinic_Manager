@@ -4,6 +4,8 @@ import com.alexander.vetclinicmanager.model.Medicine;
 import com.alexander.vetclinicmanager.service.MedicineService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/medicine")
 public class MedicineController {
@@ -12,6 +14,12 @@ public class MedicineController {
 
     public MedicineController(MedicineService medicineService) {
         this.medicineService = medicineService;
+    }
+
+
+    @GetMapping("/medicine")
+    public List <Medicine> findAllMedicine(){
+        return medicineService.findAllMedicine();
     }
 
 

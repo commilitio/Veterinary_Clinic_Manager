@@ -5,6 +5,8 @@ import com.alexander.vetclinicmanager.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 @Service
@@ -13,27 +15,37 @@ public class PetService {
     @Autowired
     private PetRepository petRepository;
 
+
     public Pet findById(Long id) {
         return petRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Pet not found"));
     }
 
+
+    public List<Pet> findAllPets(){
+        return petRepository.findAll();
+    }
+
+
     public Pet createPet(Pet pet) {
+        pet.calculateAge();
         return petRepository.save(pet);
     }
 
-    public void updatePet(Long id, Pet pet) {
+
+    public Pet updatePet(Long id, Pet pet) {
         Pet existingPet = petRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Pet not found"));
 
         existingPet.setName(pet.getName());
-        existingPet.setAge(pet.getAge());
         existingPet.setBreed(pet.getBreed());
         existingPet.setColor(pet.getColor());
         existingPet.setGender(pet.getGender());
+        existingPet.calculateAge();
 
-        petRepository.save(existingPet);
+        return petRepository.save(existingPet);
     }
+
 
     public List<Pet> findPetByNameStartingWith(String prefix) {
         return petRepository.findPetByNameStartingWith(prefix);

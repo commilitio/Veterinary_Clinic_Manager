@@ -24,8 +24,8 @@ public class Client {
     private BigDecimal account;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "client")
     private Address address;
-//    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "petOwner")           // HibernateNauka 3; wlascicielem relacji jest kolumna w Pet
-//    private List <Pet> pet;
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "petOwner")           // HibernateNauka 3; wlascicielem relacji jest kolumna w Pet
+    private List <Pet> pet;
 //    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "client")
 //    private List <Visit> visits;
 
@@ -34,14 +34,14 @@ public class Client {
     }
 
 
-    public Client(Long id, String firstName, String lastName, String telephone, BigDecimal account, Address address){ // List<Pet> pet, List<Visit> visits) {
+    public Client(Long id, String firstName, String lastName, String telephone, BigDecimal account, Address address, List<Pet> pet){    //, List<Visit> visits) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.telephone = telephone;
         this.account = account;
         this.address = address;
-//        this.pet = pet;
+        this.pet = pet;
 //        this.visits = visits;
     }
 
@@ -92,14 +92,14 @@ public class Client {
     public void setAddress(Address address) {
         this.address = address;
     }
-//
-//    public List<Pet> getPet() {
-//        return pet;
-//    }
-//
-//    public void setPet(List<Pet> pet) {
-//        this.pet = pet;
-//    }
+
+    public List<Pet> getPet() {
+        return pet;
+    }
+
+    public void setPet(List<Pet> pet) {
+        this.pet = pet;
+    }
 //
 //    public List<Visit> getVisits() {
 //        return visits;
@@ -118,7 +118,7 @@ public class Client {
                 ", telephone='" + telephone + '\'' +
                 ", account=" + account +
                 ", address=" + address +
-//                ", pet=" + pet +
+                ", pet=" + pet +
 //                ", visits=" + visits +
                 '}';
     }

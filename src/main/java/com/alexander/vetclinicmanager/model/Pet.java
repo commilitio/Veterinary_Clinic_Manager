@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 @Entity
 public class Pet {
     @Id
@@ -12,28 +15,39 @@ public class Pet {
 
     @NotBlank
     private String name;
-    private int age;            // int? data obecna - data urodzenia
+    private String age;
+    private LocalDate birthdate;
     private String type;        // enum? api ?
     private String breed;
     private String color;
     private String gender;
 
-//    @ManyToOne
-//    @JoinColumn(name = "owner id")      // ta kolumna jest wlascicielem relacji, jest kluczem obcym
-//    private Client petOwner;
+    @ManyToOne
+    @JoinColumn(name = "owner id")      // ta kolumna jest wlascicielem relacji, jest kluczem obcym
+    private Client petOwner;
 
     public Pet() {
     }
 
-    public Pet(Long id, String name, int age, String type, String breed, String color, String gender){ //}, Client petOwner) {
+    public Pet(Long id, String name, LocalDate birthdate, String type, String breed, String color, String gender, Client petOwner) {
         this.id = id;
         this.name = name;
-        this.age = age;
+        this.birthdate = birthdate;
         this.type = type;
         this.breed = breed;
         this.color = color;
         this.gender = gender;
-//        this.petOwner = petOwner;
+        this.petOwner = petOwner;
+        calculateAge();                 // !!
+    }
+
+
+    public void calculateAge(){
+        LocalDate now = LocalDate.now();
+        if (birthdate != null){
+            Period petAge = Period.between(birthdate, now);
+            this.age = petAge.getYears() + " years" + petAge.getMonths() + " months";
+        }
     }
 
     public void setId(Long id) {
@@ -52,12 +66,16 @@ public class Pet {
         this.name = name;
     }
 
-    public int getAge() {
+    public String getAge() {            // bez settera
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public LocalDate getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
     }
 
     public String getType() {
@@ -91,14 +109,14 @@ public class Pet {
     public void setGender(String gender) {
         this.gender = gender;
     }
-//
-//    public Client getPetOwner() {
-//        return petOwner;
-//    }
-//
-//    public void setPetOwner(Client petOwner) {
-//        this.petOwner = petOwner;
-//    }
+
+    public Client getPetOwner() {
+        return petOwner;
+    }
+
+    public void setPetOwner(Client petOwner) {
+        this.petOwner = petOwner;
+    }
 
 
     @Override
@@ -107,11 +125,12 @@ public class Pet {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
+                ", birthdate=" + birthdate +
                 ", type='" + type + '\'' +
                 ", breed='" + breed + '\'' +
                 ", color='" + color + '\'' +
                 ", gender='" + gender + '\'' +
-//                ", petOwner=" + petOwner +
+                ", petOwner=" + petOwner +
                 '}';
     }
 }
