@@ -4,6 +4,8 @@ import com.alexander.vetclinicmanager.model.Pet;
 import com.alexander.vetclinicmanager.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Service
@@ -30,6 +32,7 @@ public class PetService {
     }
 
 
+    @Transactional
     public Pet updatePet(Long id, Pet pet) {
         Pet existingPet = petRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Pet not found"));

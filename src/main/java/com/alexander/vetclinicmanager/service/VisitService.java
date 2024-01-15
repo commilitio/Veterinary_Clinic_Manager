@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -22,6 +24,11 @@ public class VisitService {
     }
 
 
+    public List <Visit> findAllVisits(){
+        return visitRepository.findAll();
+    }
+
+
     public Visit createVisit(Visit visit){
         return visitRepository.save(visit);
     }
@@ -32,13 +39,15 @@ public class VisitService {
                 .orElseThrow(() -> new IllegalArgumentException("Visit not found"));
 
         existingVisit.setDescription(visit.getDescription());
-        existingVisit.setLastUpdated(visit.getLastUpdated());
+//        existingVisit.setLastUpdated(visit.getLastUpdated());
 
         return visitRepository.save(existingVisit);
     }
 
 
-    public List <Visit> findByDateCreated(LocalDateTime date){
+    public List <Visit> findByDateCreated(LocalDate date){
+  //      LocalDate startOfDay = date.atStartOfDay().toLocalDate();
+  //      LocalDate endOfDay = date.atTime(LocalTime.MAX).toLocalDate();
         return visitRepository.findByDateCreated(date);
     }
 }
