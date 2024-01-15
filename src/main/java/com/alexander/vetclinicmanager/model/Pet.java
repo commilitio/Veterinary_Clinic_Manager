@@ -17,19 +17,21 @@ public class Pet {
     private String name;
     private String age;
     private LocalDate birthdate;
-    private String type;        // enum? api ?
+    private String type;                // api ?
     private String breed;
     private String color;
-    private String gender;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;              // enum
 
     @ManyToOne
     @JoinColumn(name = "owner id")      // ta kolumna jest wlascicielem relacji, jest kluczem obcym
     private Client petOwner;
 
+
     public Pet() {
     }
 
-    public Pet(Long id, String name, LocalDate birthdate, String type, String breed, String color, String gender, Client petOwner) {
+    public Pet(Long id, String name, LocalDate birthdate, String type, String breed, String color, Gender gender, Client petOwner) {
         this.id = id;
         this.name = name;
         this.birthdate = birthdate;
@@ -103,11 +105,12 @@ public class Pet {
         this.color = color;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
@@ -119,6 +122,10 @@ public class Pet {
         this.petOwner = petOwner;
     }
 
+    public enum Gender{
+        MALE,
+        FEMALE
+    }
 
     @Override
     public String toString() {
